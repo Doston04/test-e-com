@@ -1,26 +1,91 @@
-html,
-body {
-  padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --white: #fff;
+  --black: #030400;
+  --dark-purple: #69108f;
+  --pink: #f3628d;
+  --light-green: #b4e1e4;
+}
+
+*,
+*::after,
+*::before {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f6eff3;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--pink);
+  border-radius: 20px;
 }
 
 a {
-  color: inherit;
   text-decoration: none;
+  color: currentColor;
 }
 
-* {
-  box-sizing: border-box;
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.section_inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order button {
+  padding: 10px;
+}
+
+.loginBtn {
+  display: inline-block;
+  padding: 20px;
+  background-color: rgb(48, 48, 198);
+  color: white;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+form input,
+form button {
+  padding: 20px;
+  width: 100%;
+}
+
+.inner-link {
+  color: blue;
+}
+
+.inner-link:hover {
+  text-decoration: underline;
 }

@@ -1,0 +1,28 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.header_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex20 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart {
+  display: inline-block;
+  padding: 10px;
+  background-color: red;
+  color: white;
+}

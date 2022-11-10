@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "iPhone 11",
+      "price": 550
+    },
+    {
+      "id": 2,
+      "title": "iPhone 11 Pro Max",
+      "price": 650
+    },
+    {
+      "id": 3,
+      "title": "iPhone 12",
+      "price": 600
+    },
+    {
+      "id": 4,
+      "title": "iPhone 12 Pro",
+      "price": 700
+    },
+    {
+      "id": 5,
+      "title": "iPhone 12 Pro Max",
+      "price": 750
+    },
+    {
+      "id": 6,
+      "title": "iPhone 13",
+      "price": 820
+    },
+    {
+      "id": 7,
+      "title": "iPhone 13 Pro",
+      "price": 1020
+    },
+    {
+      "id": 8,
+      "title": "iPhone 13 Pro Max",
+      "price": 1200
+    }
+  ]
+}
