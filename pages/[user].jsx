@@ -12,7 +12,7 @@ export default function Profile() {
     let i = 0;
     let l = 0;
     orders.forEach((order) => {
-      console.log(order);
+      // console.log(order);
       i += order.price;
       l += order.count;
     });
@@ -74,6 +74,11 @@ export default function Profile() {
   //   totalFunction();
   //   localStorage.setItem("orders", JSON.stringify(ordersArray));
   // };
+  const [zakazlar, setZakazlar] = useState([]);
+  useEffect(() => {
+    const storageZakazlar = JSON.parse(localStorage.getItem("zakazlar"));
+    if (zakazlar !== null) setZakazlar(storageZakazlar);
+  }, [zakazlar]);
   return (
     <div>
       <p>Ism: {storageUser.name}</p>
@@ -83,7 +88,7 @@ export default function Profile() {
       <br />
       <br />
       <div>
-        <p>Orderlari:</p>
+        <p>Faol Orderlari:</p>
         <ul>
           {orders.map((order) => {
             return (
@@ -98,6 +103,22 @@ export default function Profile() {
         <button className="logoOut" onClick={logOutUser}>
           Log Out
         </button>
+        <br />
+        <br />
+        <div>
+          <p>Zakazlar:</p>
+          {zakazlar ? (
+            <ul>
+              {zakazlar.map((zakaz) => (
+                <li key={zakaz.id}>
+                  {zakaz.title} {zakaz.count}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            "Hech nima yoq!"
+          )}
+        </div>
       </div>
     </div>
   );

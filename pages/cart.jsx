@@ -1,7 +1,10 @@
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../contexts/OrderContext";
+import { ZakazContext } from "../contexts/ZakazContext";
 
 export default function Cart() {
+  const router = useRouter();
   const [storageUser, setStorageUser] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
   useEffect(() => {
@@ -9,13 +12,14 @@ export default function Cart() {
     if (user !== null) setStorageUser(user) || setIsDisabled(false);
   }, []);
   const { orders } = useContext(OrderContext);
+  const { zakazs, setZakazs } = useContext(ZakazContext);
   const [total, setTotal] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const totalFunction = () => {
     let i = 0;
     let l = 0;
     orders.forEach((order) => {
-      console.log(order);
+      // console.log(order);
       i += order.price;
       l += order.count;
     });
@@ -25,6 +29,16 @@ export default function Cart() {
   useEffect(() => {
     totalFunction();
   });
+
+  const onZakazClick = () => {
+    const zakazArray = [...zakazs];
+    const ordersArray = [...orders];
+    const storageZakazs = zakazArray.concat(ordersArray);
+    setZakazs(storageZakazs);
+    localStorage.removeItem("orders");
+    router.reload(window.location.pathname);
+    localStorage.setItem("zakazlar", JSON.stringify(storageZakazs));
+  };
   return (
     <div>
       <span>Cart</span>
@@ -41,7 +55,9 @@ export default function Cart() {
           );
         })}
         <div>{total}</div>
-        <button disabled={isDisabled}>Zakaz qil</button>
+        <button disabled={isDisabled} onClick={onZakazClick}>
+          Zakaz qil
+        </button>
       </div>
     </div>
   );

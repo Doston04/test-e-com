@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import data from "../data/data.json";
 
 export default function Register() {
   const router = useRouter();
@@ -13,6 +12,8 @@ export default function Register() {
   const surnameInp = useRef();
   const usernameInp = useRef();
   const passwordInp = useRef();
+
+  const [message, setMessage] = useState("You are not logged in");
 
   const createUser = (e) => {
     e.preventDefault();
@@ -35,15 +36,29 @@ export default function Register() {
 
   return (
     <div className="container">
-      <form className="form">
+      <form method="POST" action="/api/login" className="form">
         <h2>Register</h2>
-        <input ref={nameInp} type="text" placeholder="name" />
-        <input ref={surnameInp} type="text" placeholder="surname" />
-        <input ref={usernameInp} type="text" placeholder="username" />
-        <input ref={passwordInp} type="password" placeholder="parol" />
-        <button type="submit" onClick={createUser}>
-          Submit
-        </button>
+        <h4>{message}</h4>
+        <input ref={nameInp} name="name" type="text" placeholder="name" />
+        <input
+          ref={surnameInp}
+          name="surname"
+          type="text"
+          placeholder="surname"
+        />
+        <input
+          ref={usernameInp}
+          name="username"
+          type="text"
+          placeholder="username"
+        />
+        <input
+          ref={passwordInp}
+          name="password"
+          type="password"
+          placeholder="parol"
+        />
+        <input type="button" value="Register" onClick={createUser} />
       </form>
     </div>
   );
