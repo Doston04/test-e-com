@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
+import { render } from "react-dom";
 import { OrderContext } from "../../contexts/OrderContext";
 import { UserContext } from "../../contexts/UserContext";
 import styles from "./Layout.module.css";
@@ -13,7 +14,7 @@ export default function Header() {
   }, []);
   const [total, setTotal] = useState(0);
   const { users } = useContext(UserContext);
-  console.log(users);
+  const { orders } = useContext(OrderContext);
   // const [count, setCount] = useState(1);
   // const countChanger = () => {
   //   if (count >= 0) {
@@ -28,8 +29,7 @@ export default function Header() {
       t += order.count;
     });
     setTotal(t);
-  });
-  const { orders } = useContext(OrderContext);
+  }, [orders]);
   return (
     <header>
       <div className={`${styles.header_inner} container`}>

@@ -1,11 +1,13 @@
+import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../contexts/OrderContext";
 
 export default function Profile() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const router = useRouter();
+  const [storageUser, setStorageUser] = useState({});
   const { orders } = useContext(OrderContext);
   const [total, setTotal] = useState(0);
-  const [totalProducts, setTotalProducts] = useState(0);
+  // const [totalProducts, setTotalProducts] = useState(0);
   const totalFunction = () => {
     let i = 0;
     let l = 0;
@@ -15,11 +17,19 @@ export default function Profile() {
       l += order.count;
     });
     setTotal(i);
-    setTotalProducts(l);
+    // setTotalProducts(l);
   };
   useEffect(() => {
     totalFunction();
   });
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user !== null) setStorageUser(user);
+  }, []);
+  const logOutUser = () => {
+    localStorage.removeItem("user");
+    router.push("/");
+  };
   // const [count, setCount] = useState(order.count);
   // const addCounter = () => {
   //   setCount(count + 1);
@@ -66,9 +76,9 @@ export default function Profile() {
   // };
   return (
     <div>
-      <p>Ism: {user.name}</p>
-      <p>Familiya: {user.surname}</p>
-      <p>Username: {user.username}</p>
+      <p>Ism: {storageUser.name}</p>
+      <p>Familiya: {storageUser.surname}</p>
+      <p>Username: {storageUser.username}</p>
       <br />
       <br />
       <br />
@@ -85,6 +95,9 @@ export default function Profile() {
           })}
         </ul>
         <p>{total}</p>
+        <button className="logoOut" onClick={logOutUser}>
+          Log Out
+        </button>
       </div>
     </div>
   );

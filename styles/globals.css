@@ -89,3 +89,9 @@ form button {
 .inner-link:hover {
   text-decoration: underline;
 }
+
+.logoOut {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
